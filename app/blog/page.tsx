@@ -18,6 +18,7 @@ const BlogPage = () => {
           </div>
         </div>
       </div> */}
+        <h1 className="flex justify-center mt-8">No Data</h1>
       </div>
     </>
   );
