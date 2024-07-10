@@ -1,10 +1,14 @@
-import Link from "next/link";
+"use client";
 import React from "react";
 
-const RegisterPage = () => {
+const LoginForm = () => {
   return (
-    <div className="flex flex-col space-y-6">
-      <h1 className="text-4xl font-bold text-center mb-8">Register</h1>
+    <>
+      <div className="grid grid-cols-2 gap-8">
+        <button className="btn btn-outline">Github</button>
+        <button className="btn btn-outline">Google Sign In</button>
+      </div>
+      <div className="divider">OR</div>
       <label className="input input-bordered flex items-center gap-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,31 +35,9 @@ const RegisterPage = () => {
         </svg>
         <input type="password" className="grow" placeholder="Password" />
       </label>
-      <label className="input input-bordered flex items-center gap-4">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
-          fill="currentColor"
-          className="h-4 w-4 opacity-70"
-        >
-          <path
-            fillRule="evenodd"
-            d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
-            clipRule="evenodd"
-          />
-        </svg>
-        <input
-          type="password"
-          className="grow"
-          placeholder="Confirmation Password"
-        />
-      </label>
-      <button className="btn btn-neutral">Register</button>
-      <Link className="flex justify-end w-full link-primary" href="/login">
-        Back to Login
-      </Link>
-    </div>
+      <button className="btn btn-neutral">Login</button>
+    </>
   );
 };
 
-export default RegisterPage;
+export default LoginForm;
