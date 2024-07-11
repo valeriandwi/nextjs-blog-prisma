@@ -1,23 +1,37 @@
+"use client";
 import React from "react";
 import AddButton from "../ui/blog/add-button";
 import toast from "react-hot-toast";
 import type { Post } from "@prisma/client";
 import DeleteButton from "../ui/blog/delete-button";
 
-const BlogPage = async () => {
-  const postListFetch = await fetch(process.env.API_URL + "/api/blog", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-  });
+const BlogPage = () => {
+  const [postList, setPostList] = React.useState([]);
 
-  if (!postListFetch.ok) {
-    toast.error(`Error: ${postListFetch.status} ${postListFetch.statusText}`);
-  }
+  React.useEffect(() => {
+    const fetchPostData = async () => {
+      try {
+        const postListData = await fetch("/api/blog", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          cache: "no-cache",
+        });
+        if (!postListData.ok) {
+          toast.error(
+            `Error: ${postListData.status} ${postListData.statusText}`
+          );
+        }
+        const result = await postListData.json();
+        setPostList(result.data);
+      } catch (error: any) {
+        toast.error(error.message);
+      }
+    };
 
-  const postList = await postListFetch.json();
+    fetchPostData();
+  }, []);
 
   return (
     <>
@@ -25,8 +39,8 @@ const BlogPage = async () => {
         <AddButton />
       </div>
       <div className="flex flex-col space-y-8">
-        {postList.data && postList.data.length > 0 ? (
-          postList.data.map(({ id, title, content }: Post, index: number) => (
+        {postList && postList.length > 0 ? (
+          postList.map(({ id, title, content }: Post, index: number) => (
             <div className="card bg-primary-content shadow-xl" key={index}>
               <div className="card-body">
                 <h2 className="card-title">{title}</h2>
