@@ -1,9 +1,15 @@
+"use client";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const onLogoutClick = async () => {
+    await signOut();
+  };
+
   return (
-    <div className="min-h-screen w-screen">
+    <div className="min-h-screen max-w-screen">
       <div className="navbar bg-base-100 py-8 px-4">
         <div className="navbar-start">
           <Link href="/blog" className="btn btn-ghost text-xl">
@@ -34,7 +40,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 </Link>
               </li>
               <li>
-                <a>Logout</a>
+                <button onClick={onLogoutClick}>Logout</button>
               </li>
             </ul>
           </div>
