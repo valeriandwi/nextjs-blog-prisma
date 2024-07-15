@@ -1,11 +1,10 @@
 import { auth } from "@/app/lib/auth/auth";
 import { deleteBlogSchema, postBlogSchema } from "@/app/lib/blog-schema";
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
+import prisma from "@/prisma/prisma";
 
 export async function GET(request: NextRequest) {
-  const prisma = new PrismaClient();
   const postData = await prisma?.post.findMany();
   if (!postData) {
     return new NextResponse(
