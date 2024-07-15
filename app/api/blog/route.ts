@@ -31,7 +31,6 @@ export async function GET(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     const { id } = deleteBlogSchema.parse(await request.json());
-    const prisma = new PrismaClient();
 
     await prisma?.post.delete({
       where: {
@@ -85,7 +84,6 @@ export async function POST(request: NextRequest) {
     const session = await auth();
 
     const { content, title } = postBlogSchema.parse(await request.json());
-    const prisma = new PrismaClient();
 
     await prisma?.post.create({
       data: {
