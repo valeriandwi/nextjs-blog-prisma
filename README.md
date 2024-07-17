@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Blog with Prisma, NextAuth, and Vercel Postgres
+
+This repository contains the source code for a full-stack blog application built using Next.js, Prisma, NextAuth, and Vercel Postgres. This project is detailed in the following article: [Simple Full Stack with Next.js 14, Prisma, NextAuth 5, and Vercel Postgres (Part 1)](https://medium.com/@valerian.dwi.p/simple-full-stack-with-nextjs-14-prisma-nextauth-5-and-vercel-postgres-part-1-48294f48eff5).
+
+## Features
+
+- **Next.js 14**: React framework for building fast, modern web applications.
+- **Prisma**: Next-generation ORM for database access.
+- **NextAuth**: Authentication for Next.js applications.
+- **Vercel Postgres**: Serverless PostgreSQL database managed by Vercel.
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to set up and run the project on your local machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/valeriandwi/nextjs-blog-prisma.git
+   cd nextjs-blog-prisma
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Install dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Set up environment variables:
 
-## Deploy on Vercel
+   Create a `.env` file in the root directory and add the following environment variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```env
+    POSTGRES_URL="your_postgres_url"
+    POSTGRES_PRISMA_URL="your_prisma_url"
+    POSTGRES_URL_NO_SSL="your_url_no_ssl_url"
+    POSTGRES_URL_NON_POOLING="your_url_non_pooling"
+    POSTGRES_USER="your_pg_user"
+    POSTGRES_HOST="your_pg_host"
+    POSTGRES_PASSWORD="your_pg_password"
+    POSTGRES_DATABASE="your_db"
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Push the Prisma schema to your database:
+
+   ```bash
+   npx prisma db push
+   ```
+
+5. Start the development server:
+
+   ```bash
+   yarn dev
+   # or
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
+
+## Usage
+
+- Visit the homepage to see a list of blog posts.
+- Sign in using the authentication system provided by NextAuth.
+- Create, edit, and delete blog posts as an authenticated user.
+
+## Deployment
+
+This project is configured to be deployed on [Vercel](https://vercel.com/). Follow these steps for deployment:
+
+1. Push your code to a GitHub repository.
+2. Import the project into Vercel.
+3. Set up the environment variables in the Vercel dashboard.
+4. Deploy the project.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License.
